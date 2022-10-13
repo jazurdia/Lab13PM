@@ -9,11 +9,11 @@ import retrofit2.http.Path
 interface RickMortyApi {
 
     @GET("/api/character")
-    fun getCharacters(): Call<CharactersResponse>
+    suspend fun getCharacters(): CharactersResponse
 
     @GET("/api/character/{id}")
-    fun getCharacter(
+    suspend fun getCharacter(
         @Path("id") id: Int
-    ): Call<CharacterDto>
+    ): CharacterDto
 
 }

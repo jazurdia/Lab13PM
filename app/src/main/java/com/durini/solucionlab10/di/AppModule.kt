@@ -17,6 +17,7 @@ object AppModule {
 
     fun provideLoggintInterceptor(): HttpLoggingInterceptor()
     logging.setLevel(HttpLoggingInterceptor.Level.BODY)
+    xd
 
 
 }

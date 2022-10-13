@@ -1,4 +1,4 @@
-package com.durini.solucionlab10.ui.fragments
+package com.durini.solucionlab10.ui.character_details
 
 import android.os.Bundle
 import android.view.View

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/characterListFragment"
-        android:name="com.durini.solucionlab10.ui.fragments.CharacterListFragment"
+        android:name="com.durini.solucionlab10.ui.character_list.CharacterListFragment"
         android:label="@string/characters"
         tools:layout="@layout/fragment_character_list" >
         <action
@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/characterDetailsFragment"
-        android:name="com.durini.solucionlab10.ui.fragments.CharacterDetailsFragment"
+        android:name="com.durini.solucionlab10.ui.character_details.CharacterDetailsFragment"
         android:label="@string/character_detail"
         tools:layout="@layout/fragment_character_details" >
         <argument
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.durini.solucionlab10.ui.fragments.LoginFragment"
+        android:name="com.durini.solucionlab10.ui.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action

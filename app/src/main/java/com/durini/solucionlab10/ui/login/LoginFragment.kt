@@ -1,16 +1,9 @@
-package com.durini.solucionlab10.ui.fragments
+package com.durini.solucionlab10.ui.login
 
-import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
-import androidx.datastore.core.DataStore
-import androidx.datastore.dataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.preferencesDataStore
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.durini.solucionlab10.R

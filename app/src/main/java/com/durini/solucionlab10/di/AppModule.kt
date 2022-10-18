@@ -51,6 +51,7 @@ object AppModule {
 
     @Provides
     @Singleton
+
     fun provideDataBase(context : Context): LabDatabase{
         return Room.databaseBuilder(
             context,

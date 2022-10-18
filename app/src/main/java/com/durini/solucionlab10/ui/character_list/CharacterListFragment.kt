@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -25,13 +26,16 @@ import com.durini.solucionlab10.ui.adapters.CharacterAdapter
 import com.durini.solucionlab10.ui.dataStore
 import com.durini.solucionlab10.ui.removePreferencesValue
 import com.google.android.material.appbar.MaterialToolbar
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+@AndroidEntryPoint
 class CharacterListFragment : Fragment(R.layout.fragment_character_list), CharacterAdapter.RecyclerViewCharactersEvents {
 
     private lateinit var adapter: CharacterAdapter
@@ -39,6 +43,7 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list), Charac
     private lateinit var recyclerCharacters: RecyclerView
     private lateinit var progressBar: ProgressBar
     private lateinit var database: LabDatabase
+    private val viewModel: CharacterListViewModel by viewModels()
 
     private val characters: MutableList<Character> = mutableListOf()
 
@@ -103,37 +108,21 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list), Charac
         }
     }
 
+    private fun setObservables(){
+
+    }
+
     private fun getCharacters() {
         lifecycleScope.launchWhenStarted {
-            val characters = database.characterDao().getCharacters()
-            if (characters.isEmpty()) {
-                fetchCharacters(isSync = false)
-            } else {
-                showCharacters(characters, false)
+            viewModel.screenState.collectLatest { state ->
+
             }
         }
+
     }
 
     private fun fetchCharacters(isSync: Boolean) {
-        RetrofitInstance.api.getCharacters().enqueue(object: Callback<CharactersResponse> {
-            override fun onResponse(
-                call: Call<CharactersResponse>,
-                response: Response<CharactersResponse>
-            ) {
-                if (response.isSuccessful) {
-                    val res = response.body()?.results
-                    saveCharactersLocally(res ?: mutableListOf(), isSync)
-                    if (isSync) {
-                        Toast.makeText(requireContext(), getString(R.string.successful_list_update), Toast.LENGTH_LONG).show()
-                    }
-                }
-            }
 
-            override fun onFailure(call: Call<CharactersResponse>, t: Throwable) {
-                Toast.makeText(requireContext(), getString(R.string.error_fetching), Toast.LENGTH_LONG).show()
-            }
-
-        })
     }
 
     private fun showCharacters(characters: List<Character>, isSync: Boolean) {
